@@ -1,6 +1,3 @@
-
-
-// export default Login;
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
@@ -14,15 +11,15 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // 🔐 hard-coded credentials
-  const HARD_EMAIL = "admin@gmail.com";
-  const HARD_PASSWORD = "Admin@123";
+  // 🔐 HARD-CODED CREDENTIALS
+  const VALID_EMAIL = "admin@gmail.com";
+  const VALID_PASSWORD = "Admin@123";
 
   const isDisabled = !email || !password || loading;
 
   const showToast = (type, msg) => {
     setToast({ type, msg });
-    setTimeout(() => setToast(null), 2800);
+    setTimeout(() => setToast(null), 2500);
   };
 
   const login = () => {
@@ -30,9 +27,9 @@ const Login = () => {
 
     setLoading(true);
 
+    // ⏳ fake delay for animation
     setTimeout(() => {
-      if (email === HARD_EMAIL && password === HARD_PASSWORD) {
-        // ✅ store username for welcome animation
+      if (email === VALID_EMAIL && password === VALID_PASSWORD) {
         localStorage.setItem("username", email.split("@")[0]);
 
         showToast("success", "Login successful 🎉");
@@ -43,7 +40,7 @@ const Login = () => {
       }
 
       setLoading(false);
-    }, 900); // fake delay for animation realism
+    }, 900);
   };
 
   return (
@@ -83,7 +80,7 @@ const Login = () => {
 
       </div>
 
-      {/* 🔔 Toast Popup */}
+      {/* 🔔 TOAST */}
       {toast && (
         <div className={`toast ${toast.type}`}>
           {toast.msg}
