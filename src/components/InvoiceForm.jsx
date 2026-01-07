@@ -140,65 +140,45 @@ const removeItem = (index) => {
     items.every(i => i.description && i.quantity > 0 && i.rate > 0);
 
   /* ===== SUBMIT ===== */
-  const submit = async () => {
+  const submit = () => {
 
-    if (!isFormValid) {
-      triggerShake();
-      return showToast("error", "Please fill all required fields correctly");
-    }
+  if (!isFormValid) {
+    triggerShake();
+    return showToast("error", "Please fill all required fields correctly");
+  }
 
-    const payload = {
-      sellerName,
-      sellerGst,
-      clientName,
-      clientGst,
-      invoiceDate,
-      invoiceNumber,
-      subtotal,
-      items
-    };
+  // ✅ Success toast
+  showToast("success", "Invoice generated successfully");
 
-    try {
-      const res = await fetch("http://localhost:8080/api/invoices/save", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+  // ✅ Direct redirect to preview page
+  setTimeout(() => {
+    navigate("/preview", {
+      state: {
+        sellerName,
+        sellerGst,
+        sellerAddress,
+        sellerEmail,
+        sellerPhone,
+        sellerPincode,
+        sellerStateName,
+        sellerStateCode,
 
-      if (!res.ok) throw new Error();
+        clientName,
+        clientGst,
+        clientAddress,
+        clientPincode,
+        clientStateName,
+        clientStateCode,
 
-      showToast("success", "Invoice saved successfully");
+        invoiceDate,
+        invoiceNumber,
+        items,
+        subtotal
+      }
+    });
+  }, 800);
+};
 
-      setTimeout(() => {
-        navigate("/preview", {
-          state: {
-            sellerName,
-            sellerGst,
-            sellerAddress,
-            sellerEmail,
-            sellerPhone,
-            sellerPincode,
-            sellerStateName,
-            sellerStateCode,
-            clientName,
-            clientGst,
-            clientAddress,
-            clientPincode,
-            clientStateName,
-            clientStateCode,
-            invoiceDate,
-            invoiceNumber,
-            items,
-            subtotal
-          }
-        });
-      }, 1200);
-
-    } catch {
-      triggerShake();
-      showToast("error", "Error saving invoice");
-    }
-  };
 
   return (
     <>
