@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= BACKGROUND ================= */
+.home-bg {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    var(--bg1),
+    var(--bg2),
+    var(--bg3)
+  );
+  background-size: 300% 300%;
+  animation: gradientMove 16s ease infinite;
+  overflow: hidden;
+}
+
+/* overlay */
+.home-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(56, 189, 248, 0.15),
+    rgba(0, 0, 0, 0.55)
+  );
+  z-index: 0;
+}
+
+/* glowing orb */
+.home-bg::after {
+  content: "";
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.35),
+    transparent 65%
+  );
+  bottom: -120px;
+  left: -120px;
+  animation: floatOrb 12s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* ================= CONTENT ================= */
+.page-contentt{
+  position: relative;
+  z-index: 1;
+  padding-top: 338px;
+  text-align: center;
+  color: var(--text);
+}
+
+.home-title {
+  font-size: 52px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  letter-spacing: -0.6px;
+  animation: fadeScale 0.9s ease;
+}
+
+.home-title span {
+  color: var(--accent);
+  text-shadow: 0 0 32px rgba(56, 189, 248, 0.7);
+}
+
+.home-subtitle {
+  max-width: 680px;
+  margin: auto;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+  animation: fadeUp 1s ease;
+}
+
+/* ================= BUTTONS ================= */
+.home-actions {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin-top: 44px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 18px 48px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: all 0.35s ease;
+}
+
+/* PRIMARY */
+.primary-btn {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #022c22;
+  box-shadow: 0 16px 36px rgba(56, 189, 248, 0.55);
+}
+
+.primary-btn:hover {
+  transform: translateY(-7px) scale(1.06);
+  box-shadow: 0 28px 60px rgba(56, 189, 248, 0.75);
+}
+
+/* SECONDARY */
+.secondary-btn {
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.secondary-btn:hover {
+  background: #ffffff;
+  color: #0f172a;
+  transform: translateY(-7px) scale(1.06);
+  box-shadow: 0 22px 42px rgba(255, 255, 255, 0.35);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, -30px);
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 36px;
+  }
+
+  .home-actions {
+    flex-direction: column;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+    max-width: 300px;
+  }/* ================= WELCOME OVERLAY ================= */
+
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: welcomeFade 0.4s ease;
+}
+
+.welcome-box {
+  padding: 26px 46px;
+  border-radius: 22px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1, #22d3ee, #34d399);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  animation: welcomePop 0.6s cubic-bezier(.4,1.6,.6,1);
+}
+
+.welcome-box span {
+  color: #facc15;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.7);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes welcomePop {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes welcomeFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+}

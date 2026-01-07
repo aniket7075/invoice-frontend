@@ -1,0 +1,92 @@
+.app-footer {
+  width: 100%;
+  background: linear-gradient(135deg, #2b3a42, #1f2a30);
+  color: #ffffff;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 32px;
+  padding-bottom: 32px;
+  padding-top: 32px;
+  padding-right: 05%;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+/* LEFT */
+.footer-left h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.footer-left h3 span {
+  color: #ffd369;
+}
+
+.footer-left p {
+  font-size: 14px;
+  opacity: 0.9;
+  max-width: 340px;
+  line-height: 1.5;
+}
+
+/* CENTER LINKS */
+.footer-links {
+  display: flex;
+  gap: 22px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #ffd369;
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffd369;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* RIGHT */
+.footer-right {
+  text-align: right;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-right {
+    text-align: center;
+  }
+}
